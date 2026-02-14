@@ -63,6 +63,22 @@
             50% {transform: translateY(-200px) rotate(180deg);}
             100% {transform: translateY(0) rotate(360deg);}
         }
+
+        /* Cloud layout for photos */
+        .cloud-photo {
+            display: inline-block;
+            margin: 15px;
+            padding: 10px;
+            background: #fff8f0;
+            border-radius: 50%;
+            width: 120px;
+            height: 120px;
+            overflow: hidden;
+            box-shadow: 0 0 10px rgba(255,105,180,0.3);
+            text-align: center;
+        }
+        .cloud-photo img { width: 100%; height: 100%; border-radius: 50%; }
+        .cloud-photo p { font-size: 12px; margin-top:5px; }
     </style>
 </head>
 <body>
@@ -89,12 +105,11 @@
     <button onclick="goConfirm()">Next</button>
 </div>
 
-<!-- Are you Neeraja's Thagappa? -->
+<!-- Are you Neeraja's Tagappa? -->
 <div class="page" id="confirm">
-    <h2>Are you Neeraja's Thagappa?</h2>
+    <h2>Are you Neeraja’s Tagappa?</h2>
     <button onclick="showPage('gifts')">Yes 💙</button>
-    <button onclick="showPage('verify')">No 😅</button>
-    <button onclick="alert('Playful 😜')">Playful 😜</button>
+    <button id="noBtn">No 😅</button>
 </div>
 
 <!-- Gifts Page with 3 Boxes -->
@@ -148,7 +163,7 @@
     <button onclick="showPage('gifts')">Back to Gifts</button>
 </div>
 
-<!-- Surprise Button Page with transparent background -->
+<!-- Surprise Button Page -->
 <div class="page" id="surpriseBtn" style="
     background: url('surprise_bg.jpg') no-repeat center center;
     background-size: cover;
@@ -175,14 +190,35 @@
     </div>
 </div>
 
-<!-- Surprise Photos & Messages -->
+<!-- Surprise Photos + Quotes Slide -->
 <div class="page" id="surprisePhotos">
     <h2>Surprise for you 💙</h2>
-    <img src="surprise_photo1.jpg" alt="Photo 1" style="width:60%; border-radius:15px;">
-    <p>“Daddy, you are my everything!”</p>
-    <img src="surprise_photo2.jpg" alt="Photo 2" style="width:60%; border-radius:15px;">
-    <p>“Every moment with you is precious 💙”</p>
-    <button onclick="showPage('surpriseQR')">Next</button>
+    <div class="cloud-photo">
+        <img src="photo1.jpg" alt="Photo1">
+        <p>“Daddy, you are my everything!”</p>
+    </div>
+    <div class="cloud-photo">
+        <img src="photo2.jpg" alt="Photo2">
+        <p>“Every moment with you is precious 💙”</p>
+    </div>
+    <div class="cloud-photo">
+        <img src="photo3.jpg" alt="Photo3">
+        <p>“You make me smile every day!”</p>
+    </div>
+    <div class="cloud-photo">
+        <img src="photo4.jpg" alt="Photo4">
+        <p>“My first hero 💙”</p>
+    </div>
+    <div class="cloud-photo">
+        <img src="photo5.jpg" alt="Photo5">
+        <p>“Your love is everything!”</p>
+    </div>
+    <div class="cloud-photo">
+        <img src="photo6.jpg" alt="Photo6">
+        <p>“I grow in your hands ❤️”</p>
+    </div>
+    <br>
+    <button onclick="showPage('surpriseQR')">Next Page</button>
 </div>
 
 <!-- Surprise QR Page -->
@@ -196,7 +232,7 @@
 <!-- Final Page -->
 <div class="page" id="final">
     <h2>Neeru loves you more and will love you forever 💙</h2>
-    <p>Wish you a Happy Birthday, Thagappa! With love, Neeru ❤️</p>
+    <p>Wish you a Happy Birthday, Tagappa! With love, Neeru ❤️</p>
 </div>
 
 <script>
@@ -218,6 +254,15 @@ function goConfirm(){
 function openGift(id){
     showPage(id);
 }
+
+// Playful No button – wiggle & alert
+let noBtn = document.getElementById("noBtn");
+noBtn.addEventListener("click", function(){
+    alert("Hmm… Try again 😉");
+    noBtn.style.transform = "translateX(20px)";
+    setTimeout(()=>{ noBtn.style.transform = "translateX(-20px)"; }, 100);
+    setTimeout(()=>{ noBtn.style.transform = "translateX(0px)"; }, 200);
+});
 </script>
 
 </body>
