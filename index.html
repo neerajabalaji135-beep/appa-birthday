@@ -41,17 +41,25 @@
 <body>
 
 <!-- 0. Verification Page -->
-<div class="page" id="verification" style="display:block; background-color:lightblue; display:flex; justify-content:center; align-items:center; flex-direction:column;">
+<div class="page" id="verification" style="display:block; background-color:pinkred; display:flex; justify-content:center; align-items:center; flex-direction:column;">
     <h2>Enter Name:</h2>
     <input type="text" id="nameInput" placeholder="Type Appa Name">
     <button onclick="checkName()">Submit</button>
 </div>
 
 <!-- 1. Are you Neeraja's Thagappa -->
-<div class="page" id="thagappa" style="background-color:lightgreen; display:flex; justify-content:center; align-items:center; flex-direction:column;">
+<div class="page" id="thagappa" style="
+    background-color:lightgreen; 
+    display:flex; 
+    justify-content:center; 
+    align-items:center; 
+    flex-direction:column;
+">
     <h2>Are you Neeraja's Thagappa?</h2>
-    <button onclick="showPage('gifts')">Yes</button>
-    <button onclick="alert('Playful no 😏')">No</button>
+    <div style="display:flex; gap:50px; margin-top:20px;">
+        <button onclick="showPage('gifts')" style="padding:15px 30px; font-size:18px;">Yes</button>
+        <button onclick="alert('Playful no 😏')" style="padding:15px 30px; font-size:18px;">No</button>
+    </div>
 </div>
 
 <!-- 2. Gifts Page -->
