@@ -36,38 +36,49 @@
         .photo-container { display:flex; flex-wrap:wrap; justify-content:center; align-items:center; }
         .photo-container p { text-align:center; font-size:18px; margin-top:5px; }
 
+        /* Cute Letter styling */
+        .letter-container {
+            width:80%; height:90%; background-color:#fff0f5; padding:30px; margin:auto; border-radius:20px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.3); overflow-y:auto;
+            display:flex; flex-direction:column; justify-content:center; align-items:center;
+        }
+
+        .letter-container h2 { text-align:center; margin-bottom:20px; }
+        .letter-container p { font-size:20px; line-height:1.6; text-align:left; }
     </style>
 </head>
 <body>
 
 <!-- 0. Verification Page -->
-<div class="page" id="verification" style="display:block; background-color:pinkred; display:flex; justify-content:center; align-items:center; flex-direction:column;">
+<div class="page" id="verification" style="display:block; background-color:lightblue; display:flex; justify-content:center; align-items:center; flex-direction:column;">
     <h2>Enter Name:</h2>
     <input type="text" id="nameInput" placeholder="Type Appa Name">
     <button onclick="checkName()">Submit</button>
 </div>
 
 <!-- 1. Are you Neeraja's Thagappa -->
-<div class="page" id="thagappa" style="
-    background-color:lightgreen; 
-    display:flex; 
-    justify-content:center; 
-    align-items:center; 
-    flex-direction:column;
-">
-    <h2>Are you Neeraja's Thagappa?</h2>
-    <div style="display:flex; gap:50px; margin-top:20px;">
-        <button onclick="showPage('gifts')" style="padding:15px 30px; font-size:18px;">Yes</button>
-        <button onclick="alert('Playful no 😏')" style="padding:15px 30px; font-size:18px;">No</button>
+<div class="page" id="thagappa" style="background-color:lightgreen; display:flex; justify-content:center; align-items:center; flex-direction:column;">
+    <h2 style="margin-bottom:30px;">Are you Neeraja's Thagappa?</h2>
+    <div style="display:flex; justify-content:center; gap:60px;">
+        <button onclick="showPage('gifts')" style="padding:15px 30px; font-size:20px; border-radius:10px; cursor:pointer;">Yes</button>
+        <button onclick="alert('Playful no 😏')" style="padding:15px 30px; font-size:20px; border-radius:10px; cursor:pointer;">No</button>
     </div>
 </div>
 
 <!-- 2. Gifts Page -->
 <div class="page" id="gifts" style="background-color:lavender; display:flex; justify-content:center; align-items:center; flex-direction:column;">
-    <h2>Choose a Gift 🎁</h2>
-    <button onclick="showPage('gift1')">Gift 1 - Rose 🌹</button>
-    <button onclick="showPage('gift2')">Gift 2 - Cute Letter ✉️</button>
-    <button onclick="showPage('gift3')">Gift 3 - Certificate 📜</button>
+    <h2 style="margin-bottom:40px;">Choose a Gift 🎁</h2>
+    <div style="display:flex; justify-content:center; gap:30px; flex-wrap:wrap;">
+        <div style="width:200px; height:200px; background-color:#ffe6e6; border-radius:15px; display:flex; justify-content:center; align-items:center; flex-direction:column; box-shadow:0 5px 15px rgba(0,0,0,0.3); cursor:pointer;" onclick="showPage('gift1')">
+            <h3>Gift 1</h3><p>Rose 🌹</p>
+        </div>
+        <div style="width:200px; height:200px; background-color:#fff0f5; border-radius:15px; display:flex; justify-content:center; align-items:center; flex-direction:column; box-shadow:0 5px 15px rgba(0,0,0,0.3); cursor:pointer;" onclick="showPage('gift2')">
+            <h3>Gift 2</h3><p>Cute Letter ✉️</p>
+        </div>
+        <div style="width:200px; height:200px; background-color:#e6f0ff; border-radius:15px; display:flex; justify-content:center; align-items:center; flex-direction:column; box-shadow:0 5px 15px rgba(0,0,0,0.3); cursor:pointer;" onclick="showPage('gift3')">
+            <h3>Gift 3</h3><p>Certificate 📜</p>
+        </div>
+    </div>
 </div>
 
 <!-- 3. Gift 1 - Rose -->
@@ -77,9 +88,23 @@
 </div>
 
 <!-- 4. Gift 2 - Cute Letter -->
-<div class="page" id="gift2" style="display:flex; justify-content:center; align-items:center; background-color:#ffe6f0;">
-    <img src="letter.png" alt="Cute Letter">
-    <button onclick="showPage('gifts')">Back to Gifts</button>
+<div class="page" id="gift2" style="display:flex; justify-content:center; align-items:center;">
+    <div class="letter-container">
+        <h2>My First Hero 💙</h2>
+        <p>Dear Appa / Dad,</p>
+        <p>From the very beginning of my life, your hands were my safest place.</p>
+        <p>You didn’t just raise me… you shaped me with love, patience, and strength.</p>
+        <p>You are my hero — not because you wear a cape, but because you carried responsibilities without ever showing your pain.</p>
+        <p>I know I have given you troubles in many phases of my life. But you never once counted my mistakes.</p>
+        <p>You only saw your daughter/son… and loved me just the way I am.</p>
+        <p>I cannot imagine my life without you.</p>
+        <p>Every value I have, every strength I show, every dream I dare to chase… has your name behind it.</p>
+        <p>All I want is to grow in your hands, to make you proud, and to love you the way you have always loved me — unconditionally.</p>
+        <p>You are everything to me. And you will always be my greatest blessing.</p>
+        <p>With all my heart,</p>
+        <p>Your forever child 💙</p>
+        <button onclick="showPage('gifts')">Back to Gifts</button>
+    </div>
 </div>
 
 <!-- 5. Gift 3 - Certificate -->
@@ -101,18 +126,12 @@
 <!-- 7. Surprise Photos + Quotes -->
 <div class="page" id="surprisePhotos" style="background-color:#f0f8ff; display:flex; justify-content:center; align-items:center; flex-direction:column;">
     <div class="photo-container">
-        <div class="photo-cloud"><img src="photo1.jpg" alt="Photo 1"></div>
-        <p>“Daddy, my first hero 💙”</p>
-        <div class="photo-cloud"><img src="photo2.jpg" alt="Photo 2"></div>
-        <p>“Your love blooms like this rose 🌹”</p>
-        <div class="photo-cloud"><img src="photo3.jpg" alt="Photo 3"></div>
-        <p>“Every moment with you is precious”</p>
-        <div class="photo-cloud"><img src="photo4.jpg" alt="Photo 4"></div>
-        <p>“I grow strong in your hands ❤️”</p>
-        <div class="photo-cloud"><img src="photo5.jpg" alt="Photo 5"></div>
-        <p>“You are my everything”</p>
-        <div class="photo-cloud"><img src="photo6.jpg" alt="Photo 6"></div>
-        <p>“Forever your child 💙”</p>
+        <div class="photo-cloud"><img src="photo1.jpg" alt="Photo 1"></div><p>“Daddy, my first hero 💙”</p>
+        <div class="photo-cloud"><img src="photo2.jpg" alt="Photo 2"></div><p>“Your love blooms like this rose 🌹”</p>
+        <div class="photo-cloud"><img src="photo3.jpg" alt="Photo 3"></div><p>“Every moment with you is precious”</p>
+        <div class="photo-cloud"><img src="photo4.jpg" alt="Photo 4"></div><p>“I grow strong in your hands ❤️”</p>
+        <div class="photo-cloud"><img src="photo5.jpg" alt="Photo 5"></div><p>“You are my everything”</p>
+        <div class="photo-cloud"><img src="photo6.jpg" alt="Photo 6"></div><p>“Forever your child 💙”</p>
     </div>
     <button onclick="showPage('surpriseQR')">Next Page</button>
 </div>
@@ -162,4 +181,3 @@ function checkName(){
 
 </body>
 </html>
-            
