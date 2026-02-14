@@ -22,6 +22,7 @@
             cursor: pointer;
             margin: 10px;
             font-size: 16px;
+            position: relative;
         }
 
         /* Gift Boxes */
@@ -174,7 +175,6 @@
     justify-content: center;
     align-items: center;
 ">
-    <!-- Overlay for transparency effect -->
     <div style="
         position: absolute;
         top:0; left:0; right:0; bottom:0;
@@ -183,7 +183,6 @@
         border-radius: 15px;
     "></div>
 
-    <!-- Content on top of overlay -->
     <div style="position: relative; z-index:2; text-align:center;">
         <h2>Here's a beautiful surprise for you 🎁</h2>
         <button onclick="showPage('surprisePhotos')">Open Surprise 🎁</button>
@@ -255,13 +254,18 @@ function openGift(id){
     showPage(id);
 }
 
-// Playful No button – wiggle & alert
+// Playful No button – move randomly + alert
 let noBtn = document.getElementById("noBtn");
+noBtn.addEventListener("mouseenter", function(){
+    let x = Math.random()*300-150;
+    let y = Math.random()*200-100;
+    noBtn.style.transform = `translate(${x}px, ${y}px)`;
+});
+noBtn.addEventListener("mouseleave", function(){
+    noBtn.style.transform = `translate(0,0)`;
+});
 noBtn.addEventListener("click", function(){
     alert("Hmm… Try again 😉");
-    noBtn.style.transform = "translateX(20px)";
-    setTimeout(()=>{ noBtn.style.transform = "translateX(-20px)"; }, 100);
-    setTimeout(()=>{ noBtn.style.transform = "translateX(0px)"; }, 200);
 });
 </script>
 
