@@ -3,36 +3,53 @@
 <head>
     <title>For Appa 💙</title>
     <style>
-        body { 
-            font-family: 'Arial', sans-serif; 
-            text-align: center; 
-            background: linear-gradient(to bottom right, #ffe6f0, #ffd6cc); 
-            padding: 50px; 
+        body {
+            font-family: 'Arial';
+            text-align: center;
+            background: linear-gradient(to bottom right, #ffe6f0, #ffd6cc);
+            padding: 50px;
             position: relative;
         }
         .page { display: none; }
         .active { display: block; }
-        button { 
-            padding: 10px 20px; 
-            border-radius: 20px; 
-            border: none; 
-            background: #ff6699; 
-            color: white; 
-            cursor: pointer; 
-            margin-top: 20px; 
+
+        button {
+            padding: 10px 20px;
+            border-radius: 20px;
+            border: none;
+            background: #ff6699;
+            color: white;
+            cursor: pointer;
+            margin: 10px;
             font-size: 16px;
         }
-        img { max-width: 80%; margin: 20px 0; border-radius: 20px; }
-        .letter { 
-            font-size: 18px; 
-            line-height: 1.5; 
-            padding: 20px; 
-            background: #fff0f5; 
-            border-radius: 15px; 
-            display: inline-block; 
-            box-shadow: 0 0 15px rgba(255, 105, 180, 0.4);
+
+        /* Gift Boxes */
+        .gift-box {
+            display: inline-block;
+            width: 150px;
+            height: 150px;
+            margin: 20px;
+            background: #ff6699;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: transform 0.3s;
         }
-        /* Cute floating hearts */
+        .gift-box:hover { transform: scale(1.1); }
+
+        /* Letters */
+        .letter {
+            font-size: 18px;
+            line-height: 1.5;
+            padding: 20px;
+            background: #fff0f5;
+            border-radius: 15px;
+            display: inline-block;
+            box-shadow: 0 0 15px rgba(255,105,180,0.4);
+            text-align: left;
+        }
+
+        /* Hearts animation */
         .heart {
             position: absolute;
             width: 30px;
@@ -50,41 +67,49 @@
 </head>
 <body>
 
-<!-- Add multiple floating hearts -->
-<div class="heart" style="left: 10%; animation-delay: 0s;"></div>
-<div class="heart" style="left: 30%; animation-delay: 2s;"></div>
-<div class="heart" style="left: 50%; animation-delay: 4s;"></div>
-<div class="heart" style="left: 70%; animation-delay: 1s;"></div>
-<div class="heart" style="left: 90%; animation-delay: 3s;"></div>
+<!-- Floating Hearts -->
+<div class="heart" style="left:10%; animation-delay:0s;"></div>
+<div class="heart" style="left:30%; animation-delay:2s;"></div>
+<div class="heart" style="left:50%; animation-delay:4s;"></div>
+<div class="heart" style="left:70%; animation-delay:1s;"></div>
+<div class="heart" style="left:90%; animation-delay:3s;"></div>
 
 <!-- Verification Page -->
 <div class="page active" id="verify">
     <h2>This gift is protected 💝</h2>
-    <p>Please verify your name</p>
+    <p>Please enter your name</p>
     <input type="text" id="nameInput" placeholder="Enter your name">
     <br>
-    <button onclick="checkName()">Verify</button>
+    <button onclick="verifyName()">Verify</button>
 </div>
 
 <!-- Oops Page -->
 <div class="page" id="oops">
-    <h2>Oops… Account is not there 👀</h2>
-    <button onclick="showPage('verify')">Go Back</button>
+    <h2>Oops… This account is not available 👀</h2>
+    <button onclick="goConfirm()">Next</button>
 </div>
 
-<!-- Are You Neeraja's Thagappa Page -->
+<!-- Are you Neeraja's Thagappa? -->
 <div class="page" id="confirm">
     <h2>Are you Neeraja's Thagappa?</h2>
-    <button onclick="showPage('gift1')">Yes 💙</button>
+    <button onclick="showPage('gifts')">Yes 💙</button>
     <button onclick="showPage('verify')">No 😅</button>
-    <button onclick="alert('Playful 😎')">Playful 😜</button>
+    <button onclick="alert('Playful 😜')">Playful 😜</button>
 </div>
 
-<!-- Gift 1 – Rose Bouquet -->
+<!-- Gifts Page with 3 Boxes -->
+<div class="page" id="gifts">
+    <h2>Touch a gift to open 🎁</h2>
+    <div class="gift-box" onclick="openGift('gift1')">Gift 1</div>
+    <div class="gift-box" onclick="openGift('gift2')">Gift 2</div>
+    <div class="gift-box" onclick="openGift('gift3')">Gift 3</div>
+</div>
+
+<!-- Gift 1 – Rose -->
 <div class="page" id="gift1">
     <h2>Gift 1 – Rose Bouquet 🌹</h2>
-    <img src="rose.jpg" alt="Rose Bouquet">
-    <button onclick="showPage('gift2')">Next Gift</button>
+    <img src="rose.jpg" alt="Rose Bouquet" style="width:60%; border-radius:15px;">
+    <button onclick="showPage('gifts')">Back to Gifts</button>
 </div>
 
 <!-- Gift 2 – Cute Letter -->
@@ -113,25 +138,58 @@
         Your forever child 💙
         </p>
     </div>
-    <button onclick="showPage('gift3')">Next Gift</button>
+    <button onclick="showPage('gifts')">Back to Gifts</button>
 </div>
+
 <!-- Gift 3 – Certificate -->
 <div class="page" id="gift3">
     <h2>Gift 3 – Certificate 🏆</h2>
-    <img src="certificate.jpg" alt="Certificate">
-    <button onclick="showPage('surprise')">Open Surprise</button>
+    <img src="certificate.jpg" alt="Certificate" style="width:60%; border-radius:15px;">
+    <button onclick="showPage('gifts')">Back to Gifts</button>
 </div>
 
-<!-- Surprise Page -->
-<div class="page" id="surprise">
-    <h2>Here's a beautiful surprise for you 🎁</h2>
-    <img src="surprise_photo1.jpg" alt="Photo 1">
+<!-- Surprise Button Page with transparent background -->
+<div class="page" id="surpriseBtn" style="
+    background: url('surprise_bg.jpg') no-repeat center center;
+    background-size: cover;
+    position: relative;
+    height: 80vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+">
+    <!-- Overlay for transparency effect -->
+    <div style="
+        position: absolute;
+        top:0; left:0; right:0; bottom:0;
+        background-color: rgba(255, 255, 255, 0.5);
+        z-index:1;
+        border-radius: 15px;
+    "></div>
+
+    <!-- Content on top of overlay -->
+    <div style="position: relative; z-index:2; text-align:center;">
+        <h2>Here's a beautiful surprise for you 🎁</h2>
+        <button onclick="showPage('surprisePhotos')">Open Surprise 🎁</button>
+    </div>
+</div>
+
+<!-- Surprise Photos & Messages -->
+<div class="page" id="surprisePhotos">
+    <h2>Surprise for you 💙</h2>
+    <img src="surprise_photo1.jpg" alt="Photo 1" style="width:60%; border-radius:15px;">
     <p>“Daddy, you are my everything!”</p>
-    <img src="surprise_photo2.jpg" alt="Photo 2">
+    <img src="surprise_photo2.jpg" alt="Photo 2" style="width:60%; border-radius:15px;">
     <p>“Every moment with you is precious 💙”</p>
-    <br>
-    <p>Scan this QR to hear your song 🎵</p>
-    <img src="qr.png" alt="QR Code" style="width:200px;">
+    <button onclick="showPage('surpriseQR')">Next</button>
+</div>
+
+<!-- Surprise QR Page -->
+<div class="page" id="surpriseQR">
+    <h2>Scan this QR to hear your song 🎵</h2>
+    <img src="qr.png" alt="QR Code" style="width:200px; border-radius:15px;">
+    <p>Enjoy your song 💙</p>
     <button onclick="showPage('final')">Go to Final Page</button>
 </div>
 
@@ -147,13 +205,18 @@ function showPage(id){
     document.getElementById(id).classList.add("active");
 }
 
-function checkName(){
-    var name = document.getElementById("nameInput").value;
-    if(name === "Balaji.M"){
-        showPage('gift1');
-    } else {
-        showPage('oops');
-    }
+// Verification flow – always first Oops page
+function verifyName(){
+    showPage('oops');
+}
+
+function goConfirm(){
+    showPage('confirm');
+}
+
+// Gift boxes click
+function openGift(id){
+    showPage(id);
 }
 </script>
 
