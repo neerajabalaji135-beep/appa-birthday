@@ -91,7 +91,7 @@
 <div class="heart" style="left:70%; animation-delay:1s;"></div>
 <div class="heart" style="left:90%; animation-delay:3s;"></div>
 
-<!-- Verification Page -->
+<!-- 1️⃣ Verification Page -->
 <div class="page active" id="verify">
     <h2>This gift is protected 💝</h2>
     <p>Please enter your name</p>
@@ -100,25 +100,27 @@
     <button onclick="verifyName()">Verify</button>
 </div>
 
-<!-- Oops Page -->
+<!-- 2️⃣ Oops Page -->
 <div class="page" id="oops">
     <h2>Oops… This account is not available 👀</h2>
     <button onclick="goConfirm()">Next</button>
 </div>
 
-<!-- Are you Neeraja's Tagappa? -->
+<!-- 3️⃣ Are you Neeraja's Thagappa? -->
 <div class="page" id="confirm">
-    <h2>Are you Neeraja’s Tagappa?</h2>
+    <h2>Are you Neeraja’s Thagappa?</h2>
     <button onclick="showPage('gifts')">Yes 💙</button>
     <button id="noBtn">No 😅</button>
 </div>
 
-<!-- Gifts Page with 3 Boxes -->
+<!-- 4️⃣ Gifts Page with 3 Boxes -->
 <div class="page" id="gifts">
     <h2>Touch a gift to open 🎁</h2>
     <div class="gift-box" onclick="openGift('gift1')">Gift 1</div>
     <div class="gift-box" onclick="openGift('gift2')">Gift 2</div>
     <div class="gift-box" onclick="openGift('gift3')">Gift 3</div>
+    <br>
+    <button onclick="showPage('surpriseBtn')">Go to Surprise Page 🎁</button>
 </div>
 
 <!-- Gift 1 – Rose -->
@@ -164,7 +166,7 @@
     <button onclick="showPage('gifts')">Back to Gifts</button>
 </div>
 
-<!-- Surprise Button Page -->
+<!-- 5️⃣ Surprise Button Page (Separate Slide) -->
 <div class="page" id="surpriseBtn" style="
     background: url('surprise_bg.jpg') no-repeat center center;
     background-size: cover;
@@ -189,7 +191,7 @@
     </div>
 </div>
 
-<!-- Surprise Photos + Quotes Slide -->
+<!-- 6️⃣ Surprise Photos + Quotes Slide -->
 <div class="page" id="surprisePhotos">
     <h2>Surprise for you 💙</h2>
     <div class="cloud-photo">
@@ -220,7 +222,7 @@
     <button onclick="showPage('surpriseQR')">Next Page</button>
 </div>
 
-<!-- Surprise QR Page -->
+<!-- 7️⃣ Song QR Slide -->
 <div class="page" id="surpriseQR">
     <h2>Scan this QR to hear your song 🎵</h2>
     <img src="qr.png" alt="QR Code" style="width:200px; border-radius:15px;">
@@ -228,7 +230,7 @@
     <button onclick="showPage('final')">Go to Final Page</button>
 </div>
 
-<!-- Final Page -->
+<!-- 8️⃣ Final Page -->
 <div class="page" id="final">
     <h2>Neeru loves you more and will love you forever 💙</h2>
     <p>Wish you a Happy Birthday, Tagappa! With love, Neeru ❤️</p>
