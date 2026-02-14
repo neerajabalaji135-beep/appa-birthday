@@ -4,94 +4,95 @@
     <title>Appa Birthday Gift</title>
     <style>
         body, html { margin:0; padding:0; height:100%; font-family:sans-serif; overflow:hidden; }
-
-        .page { width:100%; height:100vh; display:none; position:relative; overflow:hidden; }
-        .center-text { display:flex; justify-content:center; align-items:center; height:100%; text-align:center; font-size:36px; background-color:pink; color:white; flex-direction:column; }
-
-        img { width:100%; height:100%; object-fit:cover; }
-        button { position:absolute; top:20px; right:20px; padding:15px 30px; font-size:18px; border-radius:10px; background-color:rgba(255,255,255,0.7); border:none; cursor:pointer; }
+        .page { width:100%; height:100vh; display:none; position:relative; overflow:hidden; background-color:#ffccd9; } /* Pinkish red background */
+        img { width:100%; height:100%; object-fit:cover; border-radius:15px; }
+        button { padding:15px 30px; font-size:18px; border-radius:10px; background-color:rgba(255,255,255,0.7); border:none; cursor:pointer; }
 
         /* Floating hearts animation */
-        .heart {
-            position: absolute;
-            font-size: 24px;
-            color: red;
-            animation: float 4s linear infinite;
-        }
+        .heart { position: absolute; font-size: 24px; color: red; animation: float 4s linear infinite; }
+        @keyframes float { 0% { transform: translateY(0) translateX(0); opacity:1; } 50% { transform: translateY(-150px) translateX(20px); opacity:0.7; } 100% { transform: translateY(-300px) translateX(-20px); opacity:0; } }
 
-        @keyframes float {
-            0% { transform: translateY(0) translateX(0); opacity:1; }
-            50% { transform: translateY(-150px) translateX(20px); opacity:0.7; }
-            100% { transform: translateY(-300px) translateX(-20px); opacity:0; }
-        }
+        /* Gifts page */
+        .gifts-container { display:flex; justify-content:center; align-items:center; gap:30px; flex-wrap:wrap; margin-top:40px; position:relative; z-index:2; }
+        .gift-box { width:200px; height:200px; border-radius:15px; display:flex; justify-content:center; align-items:center; flex-direction:column; box-shadow:0 5px 15px rgba(0,0,0,0.3); cursor:pointer; font-size:20px; font-weight:bold; background-color:rgba(255,255,255,0.8); }
 
-        /* Cloud-shaped photo container */
-        .photo-cloud {
-            width: 200px; height: 200px; border-radius:50%; overflow:hidden; margin:15px;
-            display:flex; justify-content:center; align-items:center; background-color:#fff;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
-        }
+        /* Overlay for gifts transparency bg */
+        #gifts::before { content:""; position:absolute; top:0; left:0; width:100%; height:100%; background-image:url('gifts-bg.png'); background-size:cover; background-position:center; opacity:0.5; z-index:1; border-radius:0; }
 
-        .photo-cloud img { width:100%; height:100%; object-fit:cover; }
-        .photo-container { display:flex; flex-wrap:wrap; justify-content:center; align-items:center; }
-        .photo-container p { text-align:center; font-size:18px; margin-top:5px; }
-
-        /* Cute Letter styling */
-        .letter-container {
-            width:80%; height:90%; background-color:#fff0f5; padding:30px; margin:auto; border-radius:20px;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.3); overflow-y:auto;
-            display:flex; flex-direction:column; justify-content:center; align-items:center;
-        }
+        /* Cute Letter */
+        .letter-container { width:80%; height:90%; background-color:rgba(255,255,255,0.7); padding:30px; margin:auto; border-radius:20px; box-shadow: 0 5px 20px rgba(0,0,0,0.3); overflow-y:auto; display:flex; flex-direction:column; justify-content:center; align-items:center; z-index:2; }
 
         .letter-container h2 { text-align:center; margin-bottom:20px; }
-        .letter-container p { font-size:20px; line-height:1.6; text-align:left; }
+        .letter-container p { font-size:20px; line-height:1.6; text-align:center; }
+
+        /* Surprise photo */
+        .surprise-img { width:100%; height:100%; object-fit:cover; }
+
+        /* Center text final page */
+        .center-text { display:flex; justify-content:center; align-items:center; height:100%; text-align:center; font-size:36px; flex-direction:column; color:white; }
     </style>
 </head>
 <body>
 
+<!-- Floating hearts container for all pages -->
+<script>
+function createHearts(){
+    for(let i=0;i<30;i++){
+        let heart = document.createElement('div');
+        heart.className='heart';
+        heart.style.left=Math.random()*100+'%';
+        heart.style.animationDuration=(3+Math.random()*3)+'s';
+        heart.style.fontSize=(20+Math.random()*20)+'px';
+        heart.innerHTML='❤️';
+        document.body.appendChild(heart);
+    }
+}
+createHearts();
+</script>
+
 <!-- 0. Verification Page -->
-<div class="page" id="verification" style="display:block; background-color:lightblue; display:flex; justify-content:center; align-items:center; flex-direction:column;">
+<div class="page" id="verification" style="display:flex; justify-content:center; align-items:center; flex-direction:column;">
     <h2>Enter Name:</h2>
     <input type="text" id="nameInput" placeholder="Type Appa Name">
     <button onclick="checkName()">Submit</button>
 </div>
-<!-- Are you Neeraja's Thagappa? -->
-<div class="page" id="thagappa" style="background-color:lightgreen; display:flex; justify-content:center; align-items:center; flex-direction:column;">
+
+<!-- 1. Oops Account Not Found -->
+<div class="page" id="oops" style="display:flex; justify-content:center; align-items:center; flex-direction:column;">
+    <h2>Oops, account is not available 😅</h2>
+    <button onclick="showPage('thagappa')">Next</button>
+</div>
+
+<!-- 2. Are you Neeraja's Thagappa -->
+<div class="page" id="thagappa" style="display:flex; justify-content:center; align-items:center; flex-direction:column;">
     <h2 style="margin-bottom:30px;">Are you Neeraja's Thagappa?</h2>
     <div style="display:flex; justify-content:center; gap:60px;">
- 
-<h2>Are you Neeraja's Thagappa?</h2> <button
-onclick="showPage('gifts')">Yes</button>
-<button id="noBtn">No </button> </div> </div> </div>
-
-
-<!-- 2. Gifts Page -->
-<div class="page" id="gifts" style="background-color:lavender; display:flex; justify-content:center; align-items:center; flex-direction:column;">
-    <h2 style="margin-bottom:40px;">Choose a Gift 🎁</h2>
-    <div style="display:flex; justify-content:center; gap:30px; flex-wrap:wrap;">
-        <div style="width:200px; height:200px; background-color:#ffe6e6; border-radius:15px; display:flex; justify-content:center; align-items:center; flex-direction:column; box-shadow:0 5px 15px rgba(0,0,0,0.3); cursor:pointer;" onclick="showPage('gift1')">
-            <h3>Gift 1</h3><p>Rose 🌹</p>
-        </div>
-        <div style="width:200px; height:200px; background-color:#fff0f5; border-radius:15px; display:flex; justify-content:center; align-items:center; flex-direction:column; box-shadow:0 5px 15px rgba(0,0,0,0.3); cursor:pointer;" onclick="showPage('gift2')">
-            <h3>Gift 2</h3><p>Cute Letter ✉️</p>
-        </div>
-        <div style="width:200px; height:200px; background-color:#e6f0ff; border-radius:15px; display:flex; justify-content:center; align-items:center; flex-direction:column; box-shadow:0 5px 15px rgba(0,0,0,0.3); cursor:pointer;" onclick="showPage('gift3')">
-            <h3>Gift 3</h3><p>Certificate 📜</p>
-        </div>
+        <button onclick="showPage('gifts')">Yes</button>
+        <button onclick="alert('Playful no 😏')">No</button>
     </div>
 </div>
 
-<!-- 3. Gift 1 - Rose -->
+<!-- 3. Gifts Slide with transparent bg -->
+<div class="page" id="gifts" style="display:flex; flex-direction:column; justify-content:center; align-items:center;">
+    <h2 style="position:relative; z-index:2;">Choose a Gift 🎁</h2>
+    <div class="gifts-container">
+        <div class="gift-box" onclick="showPage('gift1')">Gift 1 🌹<br>Rose</div>
+        <div class="gift-box" onclick="showPage('gift2')">Gift 2 ✉️<br>Cute Letter</div>
+        <div class="gift-box" onclick="showPage('gift3')">Gift 3 📜<br>Certificate</div>
+    </div>
+</div>
+
+<!-- 3.1 Gift 1 - Rose -->
 <div class="page" id="gift1">
     <img src="rose.jpg" alt="Rose Bouquet">
     <button onclick="showPage('gifts')">Back to Gifts</button>
 </div>
 
-<!-- 4. Gift 2 - Cute Letter -->
+<!-- 3.2 Gift 2 - Cute Letter with background overlay -->
 <div class="page" id="gift2" style="display:flex; justify-content:center; align-items:center;">
     <div class="letter-container">
         <h2>My First Hero 💙</h2>
-        <p>Dear Appa,</p>
+        <p>Dear Appa / Dad,</p>
         <p>From the very beginning of my life, your hands were my safest place.</p>
         <p>You didn’t just raise me… you shaped me with love, patience, and strength.</p>
         <p>You are my hero — not because you wear a cape, but because you carried responsibilities without ever showing your pain.</p>
@@ -103,79 +104,52 @@ onclick="showPage('gifts')">Yes</button>
         <p>You are everything to me. And you will always be my greatest blessing.</p>
         <p>With all my heart,</p>
         <p>Your forever child 💙</p>
-        <button onclick="showPage('gifts')">Back to Gifts</button>
+        <button onclick="showPage('gifts')" style="margin-top:20px; padding:15px 30px;">Back to Gifts</button>
     </div>
 </div>
 
-<!-- 5. Gift 3 - Certificate -->
+<!-- 3.3 Gift 3 - Certificate -->
 <div class="page" id="gift3">
     <img src="certificate.jpg" alt="Certificate">
     <button onclick="showPage('gifts')">Back to Gifts</button>
 </div>
 
-<!-- 6. Surprise Button Page -->
-<div class="page" id="surprisePage" style="background-image:url('background.jpg'); background-size:cover; background-position:center; display:flex; justify-content:center; align-items:center; flex-direction:column;">
-    <h2 style="color:white; text-shadow:2px 2px 5px black; text-align:center; margin-bottom:30px;">
-        Here’s a beautiful surprise for you!
-    </h2>
-    <button onclick="showPage('surprisePhotos')" style="padding:20px 40px; font-size:24px; border-radius:15px; background-color:rgba(255,255,255,0.7); border:none; cursor:pointer;">
-        Open Surprise 🎁
-    </button>
+<!-- 4. Surprise Button Page -->
+<div class="page" id="surprisePage" style="display:flex; flex-direction:column; justify-content:center; align-items:center; background-image:url('background.jpg'); background-size:cover; background-position:center;">
+    <h2 style="color:white; text-shadow:2px 2px 5px black; text-align:center; margin-bottom:30px;">Here’s a beautiful surprise for you!</h2>
+    <button onclick="showPage('surprisePhoto')" style="padding:20px 40px; font-size:24px; border-radius:15px; background-color:rgba(255,255,255,0.7); border:none; cursor:pointer;">Open Surprise 🎁</button>
 </div>
 
-<!-- 7. Surprise Photos + Quotes -->
-<div class="page" id="surprisePhotos" style="background-color:#f0f8ff; display:flex; justify-content:center; align-items:center; flex-direction:column;">
-    <div class="photo-container">
-        <div class="photo-cloud"><img src="photo1.jpg" alt="Photo 1"></div><p>“Daddy, my first hero 💙”</p>
-        <div class="photo-cloud"><img src="photo2.jpg" alt="Photo 2"></div><p>“Your love blooms like this rose 🌹”</p>
-        <div class="photo-cloud"><img src="photo3.jpg" alt="Photo 3"></div><p>“Every moment with you is precious”</p>
-        <div class="photo-cloud"><img src="photo4.jpg" alt="Photo 4"></div><p>“I grow strong in your hands ❤️”</p>
-        <div class="photo-cloud"><img src="photo5.jpg" alt="Photo 5"></div><p>“You are my everything”</p>
-        <div class="photo-cloud"><img src="photo6.jpg" alt="Photo 6"></div><p>“Forever your child 💙”</p>
-    </div>
-    <button onclick="showPage('surpriseQR')">Next Page</button>
+<!-- 5. Surprise Fullscreen Photo -->
+<div class="page" id="surprisePhoto">
+    <img src="surprise.jpg" alt="Surprise Photo" class="surprise-img">
+    <button onclick="showPage('surpriseQR')">Next</button>
 </div>
 
-<!-- 8. QR Page -->
-<div class="page" id="surpriseQR" style="display:flex; justify-content:center; align-items:center; flex-direction:column; background-color:#fff0f5;">
+<!-- 6. QR Page -->
+<div class="page" id="surpriseQR" style="display:flex; flex-direction:column; justify-content:center; align-items:center;">
     <h2>Scan QR to Play Song 🎵</h2>
     <img src="qr.png" alt="QR Code" style="width:200px; height:200px;">
     <button onclick="showPage('final')">Go to Final Page</button>
 </div>
 
-<!-- 9. Final Page -->
+<!-- 7. Final Page -->
 <div class="page" id="final">
     <div class="center-text">
         <p>Neeru loves you more and will love you forever 💖<br>Wish you a happiest birthday Tagappa! With love, Neeru 💙</p>
     </div>
 </div>
 
-<!-- Floating hearts container -->
 <script>
-function createHearts(){
-    for(let i=0;i<20;i++){
-        let heart = document.createElement('div');
-        heart.className='heart';
-        heart.style.left=Math.random()*100+'%';
-        heart.style.animationDuration=(3+Math.random()*3)+'s';
-        heart.style.fontSize=(20+Math.random()*20)+'px';
-        heart.innerHTML='❤️';
-        document.body.appendChild(heart);
-    }
-}
-createHearts();
-
-// Show page function
 function showPage(pageId){
     document.querySelectorAll('.page').forEach(p=>p.style.display='none');
-    document.getElementById(pageId).style.display='block';
+    document.getElementById(pageId).style.display='flex';
 }
 
 // Verification check
 function checkName(){
     const name = document.getElementById('nameInput').value.trim();
-    alert("Oops, account is not available 😅");
-    showPage('thagappa');
+    showPage('oops'); // Always playful Oops
 }
 </script>
 
