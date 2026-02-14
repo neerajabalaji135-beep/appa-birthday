@@ -1,24 +1,161 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Appa Birthday</title>
+    <title>For Appa 💙</title>
+    <style>
+        body { 
+            font-family: 'Arial', sans-serif; 
+            text-align: center; 
+            background: linear-gradient(to bottom right, #ffe6f0, #ffd6cc); 
+            padding: 50px; 
+            position: relative;
+        }
+        .page { display: none; }
+        .active { display: block; }
+        button { 
+            padding: 10px 20px; 
+            border-radius: 20px; 
+            border: none; 
+            background: #ff6699; 
+            color: white; 
+            cursor: pointer; 
+            margin-top: 20px; 
+            font-size: 16px;
+        }
+        img { max-width: 80%; margin: 20px 0; border-radius: 20px; }
+        .letter { 
+            font-size: 18px; 
+            line-height: 1.5; 
+            padding: 20px; 
+            background: #fff0f5; 
+            border-radius: 15px; 
+            display: inline-block; 
+            box-shadow: 0 0 15px rgba(255, 105, 180, 0.4);
+        }
+        /* Cute floating hearts */
+        .heart {
+            position: absolute;
+            width: 30px;
+            height: 30px;
+            background: url('https://i.ibb.co/9gV2yV8/heart.png') no-repeat center;
+            background-size: contain;
+            animation: float 6s infinite;
+        }
+        @keyframes float {
+            0% {transform: translateY(0) rotate(0deg);}
+            50% {transform: translateY(-200px) rotate(180deg);}
+            100% {transform: translateY(0) rotate(360deg);}
+        }
+    </style>
 </head>
 <body>
-   <h2>This gift is protected 💝</h2>
-<p>Please enter your name</p>
 
-<input type="text" id="nameInput">
-<button onclick="checkName()">Verify</button>
+<!-- Add multiple floating hearts -->
+<div class="heart" style="left: 10%; animation-delay: 0s;"></div>
+<div class="heart" style="left: 30%; animation-delay: 2s;"></div>
+<div class="heart" style="left: 50%; animation-delay: 4s;"></div>
+<div class="heart" style="left: 70%; animation-delay: 1s;"></div>
+<div class="heart" style="left: 90%; animation-delay: 3s;"></div>
+
+<!-- Verification Page -->
+<div class="page active" id="verify">
+    <h2>This gift is protected 💝</h2>
+    <p>Please verify your name</p>
+    <input type="text" id="nameInput" placeholder="Enter your name">
+    <br>
+    <button onclick="checkName()">Verify</button>
+</div>
+
+<!-- Oops Page -->
+<div class="page" id="oops">
+    <h2>Oops… Akod is not there 👀</h2>
+    <button onclick="showPage('verify')">Go Back</button>
+</div>
+
+<!-- Are You Neeraja's Tagappa Page -->
+<div class="page" id="confirm">
+    <h2>Are you Neeraja's Tagappa?</h2>
+    <button onclick="showPage('gift1')">Yes 💙</button>
+    <button onclick="showPage('verify')">No 😅</button>
+    <button onclick="alert('Playful 😎')">Playful 😜</button>
+</div>
+
+<!-- Gift 1 – Rose Bouquet -->
+<div class="page" id="gift1">
+    <h2>Gift 1 – Rose Bouquet 🌹</h2>
+    <img src="rose.jpg" alt="Rose Bouquet">
+    <button onclick="showPage('gift2')">Next Gift</button>
+</div>
+
+<!-- Gift 2 – Cute Letter -->
+<div class="page" id="gift2">
+    <h2>Gift 2 – Cute Letter 💌</h2>
+    <div class="letter">
+        <p>My First Hero 💙</p>
+        <p>Dear Appa,</p>
+        <p>
+        From the very beginning of my life, your hands were my safest place.<br>
+        You didn’t just raise me… you shaped me with love, patience, and strength.<br>
+        You are my hero — not because you wear a cape,<br>
+        but because you carried responsibilities without ever showing your pain.<br>
+        I know I have given you troubles in many phases of my life.<br>
+        But you never once counted my mistakes.<br>
+        You only saw your daughter/son… and loved me just the way I am.<br>
+        I cannot imagine my life without you.<br>
+        Every value I have, every strength I show,<br>
+        every dream I dare to chase… has your name behind it.<br>
+        All I want is to grow in your hands,<br>
+        to make you proud,<br>
+        and to love you the way you have always loved me — unconditionally.<br>
+        You are everything to me.<br>
+        And you will always be my greatest blessing.<br>
+        With all my heart,<br>
+        Your forever child 💙
+        </p>
+    </div>
+    <button onclick="showPage('gift3')">Next Gift</button>
+</div>
+<!-- Gift 3 – Certificate -->
+<div class="page" id="gift3">
+    <h2>Gift 3 – Certificate 🏆</h2>
+    <img src="certificate.jpg" alt="Certificate">
+    <button onclick="showPage('surprise')">Open Surprise</button>
+</div>
+
+<!-- Surprise Page -->
+<div class="page" id="surprise">
+    <h2>Here's a beautiful surprise for you 🎁</h2>
+    <img src="surprise_photo1.jpg" alt="Photo 1">
+    <p>“Daddy, you are my everything!”</p>
+    <img src="surprise_photo2.jpg" alt="Photo 2">
+    <p>“Every moment with you is precious 💙”</p>
+    <br>
+    <p>Scan this QR to hear your song 🎵</p>
+    <img src="qr.png" alt="QR Code" style="width:200px;">
+    <button onclick="showPage('final')">Go to Final Page</button>
+</div>
+
+<!-- Final Page -->
+<div class="page" id="final">
+    <h2>Neeru loves you more and will love you forever 💙</h2>
+    <p>Wish you a Happy Birthday, Thagappa! With love, Neeru ❤️</p>
+</div>
 
 <script>
-function checkName() {
-var name = document.getElementById("nameInput").value;
-if(name === "Balaji.M") {
-alert("Correct 💙");
-} else {
-alert("Wrong name 👀");
+function showPage(id){
+    document.querySelectorAll(".page").forEach(p => p.classList.remove("active"));
+    document.getElementById(id).classList.add("active");
 }
+
+function checkName(){
+    var name = document.getElementById("nameInput").value;
+    if(name === "Balaji.M"){
+        showPage('gift1');
+    } else {
+        showPage('oops');
+    }
 }
 </script>
+
 </body>
 </html>
