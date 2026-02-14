@@ -4,6 +4,21 @@
     <title>Appa Birthday</title>
 </head>
 <body>
-    <h1>Hello Appa 💙</h1>
+   <h2>This gift is protected 💝</h2>
+<p>Please enter your name</p>
+
+<input type="text" id="nameInput">
+<button onclick="checkName()">Verify</button>
+
+<script>
+function checkName() {
+var name = document.getElementById("nameInput").value;
+if(name === "Balaji.M") {
+alert("Correct 💙");
+} else {
+alert("Wrong name 👀");
+}
+}
+</script>
 </body>
 </html>
